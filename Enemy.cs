@@ -2,11 +2,20 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    [SerializeField] public GameObject _prefab;
+    [SerializeField] private Vector3 _direction;
+    
     private float _speed = 1.0f;
-    private Vector3 _wayPoint = Vector3.zero;
 
-    private void Update()
+    private void FixedUpdate()
     {
-        transform.position = Vector3.MoveTowards(transform.position, _wayPoint, _speed*Time.deltaTime);
+        transform.Translate(_direction * _speed * Time.deltaTime);
     }
+
+    public void Generate(Transform position, Vector3 direction)
+    {
+        _direction = direction;
+        Instantiate(_prefab, position);
+    }    
 }
+            
