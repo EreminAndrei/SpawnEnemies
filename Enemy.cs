@@ -12,7 +12,7 @@ public class Enemy : MonoBehaviour
         transform.Translate(_direction * _speed * Time.deltaTime);
     }
 
-    public void Generate(Transform position, Vector3 direction)
+    public void Init (Transform position, Vector3 direction)
     {
         _direction = direction;
         Instantiate(_prefab, position);

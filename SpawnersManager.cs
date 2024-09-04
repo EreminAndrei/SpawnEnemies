@@ -9,10 +9,10 @@ public class SpawnersManager : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(Count(_delay));
+        StartCoroutine(SpawnEnemies(_delay));
     }
 
-    private IEnumerator Count (float delay)
+    private IEnumerator SpawnEnemies (float delay)
     {
         var wait = new WaitForSeconds (delay);
 
@@ -20,7 +20,7 @@ public class SpawnersManager : MonoBehaviour
         {
             yield return wait;
             int random = Random.Range (0, _spawners.Length);            
-            _spawners[random].Spawn(); 
+            _spawners[random].CreateEnemy(); 
         }
     }
 }
