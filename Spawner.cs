@@ -7,6 +7,7 @@ public class Spawner : MonoBehaviour
 
     public void CreateEnemy()
     {
-        _enemy.Init(transform, _direction);
+        var cube = Instantiate(_enemy, transform.position, Quaternion.identity);
+        cube.GetDirection(_direction);
     }   
 }
