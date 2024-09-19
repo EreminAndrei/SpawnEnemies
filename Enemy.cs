@@ -1,20 +1,18 @@
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
-{
-    [SerializeField] public GameObject _prefab;
-    [SerializeField] private Vector3 _direction;
-    
+{    
+    private Target _target;    
     private float _speed = 1.0f;
 
     private void FixedUpdate()
     {
-        transform.Translate(_direction * _speed * Time.deltaTime);
+        transform.position = Vector3.Lerp(transform.position, _target.transform.position, _speed*Time.deltaTime);
     }
 
-    public void GetDirection (Vector3 direction)
+    public void GetTarget (Target target)
     {
-        _direction = direction;        
+        _target = target;        
     }    
 }
             

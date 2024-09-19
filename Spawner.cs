@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    [SerializeField] private Enemy _enemy;
-    [SerializeField] private Vector3 _direction;
+    [SerializeField] private Enemy _enemy;    
+    [SerializeField] private Target _target;
 
     public void CreateEnemy()
     {
         var cube = Instantiate(_enemy, transform.position, Quaternion.identity);
-        cube.GetDirection(_direction);
+        cube.GetTarget(_target);
     }   
 }
