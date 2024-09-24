@@ -1,13 +1,26 @@
+using System.Collections;
 using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    [SerializeField] private Enemy _enemy;    
-    [SerializeField] private Target _target;
+    [SerializeField] private SpawnerPoint[] _spawnerPoints = new SpawnerPoint[4];
+    
+    private float _delay = 2f;
 
-    public void CreateEnemy()
+    private void Start()
     {
-        var cube = Instantiate(_enemy, transform.position, Quaternion.identity);
-        cube.GetTarget(_target);
-    }   
+        StartCoroutine(SpawnEnemies(_delay));
+    }
+
+    private IEnumerator SpawnEnemies (float delay)
+    {
+        var wait = new WaitForSeconds (delay);
+
+        while (true)
+        {
+            yield return wait;
+            int random = Random.Range (0, _spawnerPoints.Length);            
+            _spawnerPoints[random].CreateEnemy(); 
+        }
+    }
 }

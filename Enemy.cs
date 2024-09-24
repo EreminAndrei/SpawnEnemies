@@ -3,14 +3,14 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {    
     private Target _target;    
-    private float _speed = 1.0f;
+    private float _speed = 3.0f;
 
-    private void FixedUpdate()
+    private void Update()
     {
-        transform.position = Vector3.Lerp(transform.position, _target.transform.position, _speed*Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, _target.transform.position, _speed*Time.deltaTime);
     }
 
-    public void GetTarget (Target target)
+    public void DefineTarget (Target target)
     {
         _target = target;        
     }    
